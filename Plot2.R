@@ -1,11 +1,10 @@
-#Plot 2: line graph thin black line, 
+####### Plot 2: line graph thin black line #######
 
 #read in small amount for col classes 
 initial <- read.table("household_power_consumption.txt", sep = ";", nrows = 10, header = T ) 
 
 classes <- sapply(initial, class)  #get col classes for reading in whole data set
 classes[1:2] <- "character" #want first two to be character cols
-
 names <- names(initial) #get col names 
 
 #read the whole table 
@@ -23,10 +22,7 @@ mysubset$rtime <- strptime(mysubset$comb, format = "%d/%m/%Y %H:%M:%S" )
 
 
 
-# this is the code that creates the PNG file.
-
-#reset the graphics device
-dev.off(dev.list()["RStudioGD"])
+###### Creating PNG ########
 
 # start a png image
 png(file="plot2.png", width=480, height=480)
@@ -36,4 +32,4 @@ par(mar = c(5, 4.6, 4, 1.5))  #set margins appropriately
 
 plot2 <- plot(mysubset$rtime, mysubset$Global_active_power, type = "l", lwd = 1.5, ylab = "Global Active Power (kilowatts)", xlab = "",  cex.lab = 1, cex.axis = 1)
 
-dev.off() # close the graphics device
+dev.off() # end by closeing the graphics device

@@ -1,15 +1,13 @@
-# PLOT 3
-
+########## PLOT 3 ##########
 
 #read in small amount for col classes 
-initial <- read.table("household_power_consumption.txt", sep = ";", nrows = 10, header = T ) 
+initial <- read.table("household_power_consumption.txt", sep = ";", nrows = 10, header = T )
 
 classes <- sapply(initial, class)  #get col classes for reading in whole data set
 classes[1:2] <- "character" #want first two to be character cols
-
 names <- names(initial) #get col names 
 
-#read the whole table XXX CHANGE TO FULL TABLE
+#read the whole table
 table <- read.table("household_power_consumption.txt", sep = ";", na.strings = "?",  col.names = names, colClasses = classes, row.names = NULL, skip = 1)
 
 #tidy up the data
@@ -23,10 +21,7 @@ mysubset$rtime <- strptime(mysubset$comb, format = "%d/%m/%Y %H:%M:%S" )
 
 
 
-# the code that creates the PNG file.
-
-#reset the graphics device
-dev.off(dev.list()["RStudioGD"])
+###### Creating PNG ########
 
 # start a png image
 png(file="plot3.png", width=480, height=480)
@@ -45,5 +40,5 @@ lines(mysubset$rtime, mysubset$Sub_metering_3, col = "blue")
 # add a ledgend
 legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col= c("black","red","blue"), lwd = 1.5, cex=1) 
 
-dev.off()  # close the png device
+dev.off()  # close the png device at the end
 
